@@ -1,6 +1,5 @@
 import random
 
-
 def welcome_message():
     """
     Input user name and welcome message
@@ -10,7 +9,7 @@ def welcome_message():
     print(f'Hello, {name}! Lets play Hangman!')
     print('---------------------------------')
 
-welcome_message()    
+welcome_message()
 
 
 wordDictionary = [
@@ -113,8 +112,15 @@ def printLines():
 ### Creating the loop which will operating the game
 
 def hangman_game():
-    ### Creating the loop which will operating the game
+    """
+        Main loop for the Hangman game.
 
+        This loop continues until the player has either guessed the word correctly or made 6 wrong guesses.
+        It prompts the user to guess a letter, checks if the letter is correct or wrong, updates the game state accordingly,
+        and prints the current hangman picture, the guessed letters, the word with guessed letters filled in,
+        and lines representing unknown letters.
+    """
+    
     length_of_word_to_guess = len(randomWord)
     wrong_answers = 0
     current_guess_index = 0
@@ -125,46 +131,47 @@ def hangman_game():
 
 
     while(wrong_answers != 6 and current_letters_right != length_of_word_to_guess):
-        """
-        Main loop for the Hangman game.
-
-        This loop continues until the player has either guessed the word correctly or made 6 wrong guesses.
-        It prompts the user to guess a letter, checks if the letter is correct or wrong, updates the game state accordingly,
-        and prints the current hangman picture, the guessed letters, the word with guessed letters filled in,
-        and lines representing unknown letters.
-        """
         print('\nLetters guessed are: ')
         for letter in current_letters_guessed:
             print(letter, end=' ')
 
         ### Promt user input
 
-        letterGuessed = input('\nGuess a letter please: ').upper()
+        try:
+            letterGuessed = input('\nGuess a letter please: ').upper()
 
-        ### User is right
+            if not letterGuessed.isalpha() or len(letterGuessed) != 1:
+                raise ValueError('Invalid input. You must enter a single letter.')     
 
-        if(randomWord[current_guess_index] == letterGuessed):
-            print_hangman(wrong_answers)
-            ### Print word
-            current_guess_index +=1
-            current_letters_guessed.append(letterGuessed)
-            current_letters_right = printWord(current_letters_guessed)
-            printLines()
 
-        ### User was wrong
+            ### User is right
 
-        else:
-            wrong_answers +=1
-            current_letters_guessed.append(letterGuessed)
+            if(randomWord[current_guess_index] == letterGuessed):
+                print_hangman(wrong_answers)
+                ### Print word
+                current_guess_index +=1
+                current_letters_guessed.append(letterGuessed)
+                current_letters_right = printWord(current_letters_guessed)
+                printLines()
 
-            ### Update the picture
+            ### User was wrong
 
-            print_hangman(wrong_answers)
+            else:
+                wrong_answers +=1
+                current_letters_guessed.append(letterGuessed)
 
-            ### Print word
+                ### Update the picture
 
-            current_letters_right = printWord(current_letters_guessed)
-            printLines()
+                print_hangman(wrong_answers)
+
+                 ### Print word
+
+                current_letters_right = printWord(current_letters_guessed)
+                printLines()
+
+        except ValueError as e:
+            print(f"{str(e)}")
+            continue        
 
     print('\nGame is over! \nThank you for playing.')   
           
