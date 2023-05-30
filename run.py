@@ -139,7 +139,7 @@ def hangman_game():
 
         ### Promt user input
 
-        letterGuessed = input('\nGuess a letter please: ')
+        letterGuessed = input('\nGuess a letter please: ').upper()
 
         ### User is right
 
