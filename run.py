@@ -98,9 +98,49 @@ def printWord(guessedLetters):
 
 def printLines():
     """
+    Prints lines to represent the length of the word to guess.
     This function prints lines using the Unicode character '\u203E' to represent the length of the word to guess.
     Each line represents an unknown letter in the word.
     """
     print('\r')
     for char in randomWord:
         print('\u203E', end=' ')
+
+
+### Creating the loop which will operating the game
+
+length_of_word_to_guess = len(randomWord)
+wrong_answers = 0
+current_guess_index = 0
+current_letters_guessed = []
+current_letters_right = 0
+
+
+while(wrong_answers != 6 and current_letters_right != length_of_word_to_guess):
+    print('\nLetters guessed are: ')
+    for letter in current_letters_guessed:
+        print(letter, end=' ')
+    ### Promt user input
+    letterGuessed = input('\nGuess a letter please: ')
+    ### User is right
+    if(randomWord[current_guess_index] == letterGuessed):
+        print_hangman(wrong_answers)
+        ### Print word
+        current_guess_index +=1
+        current_letters_guessed.append(letterGuessed)
+        current_letters_right = printWord(current_letters_guessed)
+        printLines()
+    ### User was wrong
+    else:
+        wrong_answers +=1
+        current_letters_guessed.append(letterGuessed)
+        ### Update the picture
+        print_hangman(wrong_answers)
+        ### Print word
+        current_letters_right = printWord(current_letters_guessed)
+        printLines()
+
+print(f'Game is over {name}! Thank you for playing')        
+
+
+
