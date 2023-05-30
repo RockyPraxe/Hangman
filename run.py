@@ -116,13 +116,27 @@ current_letters_guessed = []
 current_letters_right = 0
 
 
+
+
 while(wrong_answers != 6 and current_letters_right != length_of_word_to_guess):
+    """
+      Main loop for the Hangman game.
+
+    This loop continues until the player has either guessed the word correctly or made 6 wrong guesses.
+    It prompts the user to guess a letter, checks if the letter is correct or wrong, updates the game state accordingly,
+    and prints the current hangman picture, the guessed letters, the word with guessed letters filled in,
+    and lines representing unknown letters.
+    """
     print('\nLetters guessed are: ')
     for letter in current_letters_guessed:
         print(letter, end=' ')
+
     ### Promt user input
+
     letterGuessed = input('\nGuess a letter please: ')
+
     ### User is right
+
     if(randomWord[current_guess_index] == letterGuessed):
         print_hangman(wrong_answers)
         ### Print word
@@ -130,13 +144,19 @@ while(wrong_answers != 6 and current_letters_right != length_of_word_to_guess):
         current_letters_guessed.append(letterGuessed)
         current_letters_right = printWord(current_letters_guessed)
         printLines()
+
     ### User was wrong
+
     else:
         wrong_answers +=1
         current_letters_guessed.append(letterGuessed)
+
         ### Update the picture
+
         print_hangman(wrong_answers)
+
         ### Print word
+
         current_letters_right = printWord(current_letters_guessed)
         printLines()
 
