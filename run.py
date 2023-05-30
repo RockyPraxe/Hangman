@@ -140,8 +140,8 @@ def hangman_game():
             ### Error will be raised if input is incorrect
             letterGuessed = input('\nGuess a letter please: ')
 
-            if not letterGuessed.isalpha() or len(letterGuessed) != 1:
-                raise ValueError('Invalid input. You must enter a single letter.')
+            if not letterGuessed.isalpha() or len(letterGuessed) != 1 or letterGuessed != letterGuessed.lower():
+                raise ValueError('Invalid input. You must enter a single lower letter.')
 
 
             ### User is right
@@ -189,6 +189,7 @@ def restart_game():
             break
 
 
+
 def play_again():
     """
     Ask the user if they want to play again.
@@ -204,5 +205,7 @@ def play_again():
             print('Invalid input. Please enter \'y\' or \'n\'.')
 
 
+
 play_again()
-restart_game()                                     
+restart_game() 
+                                   
