@@ -78,3 +78,20 @@ def print_hangman(wrong):
         print('/ \ |')
         print('   ===')  
 
+
+def printWord(guessedLetters):
+    """
+      Prints the word to guess with guessed letters filled in and empty spaces for unguessed letters.
+      Returns the number of correctly guessed letters.
+    """
+    counter = 0
+    rightLetters = 0
+    for char in randomWord:
+        if(char in guessedLetters):
+            print(randomWord[counter], end=' ')
+            rightLetters +=1
+        else:
+            print(' ', end=' ')
+        counter +=1
+    return rightLetters        
+
