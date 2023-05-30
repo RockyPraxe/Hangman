@@ -5,7 +5,7 @@ def welcome_message():
     Input user name and welcome message
     """
     print('Welcome to hangman')
-    name = input('Enter your name: \n')
+    name = input('Enter your name: \n').upper()
     print(f'Hello, {name}! Lets play Hangman!')
     print('---------------------------------')
 
@@ -120,7 +120,6 @@ def hangman_game():
         and prints the current hangman picture, the guessed letters, the word with guessed letters filled in,
         and lines representing unknown letters.
     """
-    
     length_of_word_to_guess = len(randomWord)
     wrong_answers = 0
     current_guess_index = 0
@@ -138,10 +137,11 @@ def hangman_game():
         ### Promt user input
 
         try:
-            letterGuessed = input('\nGuess a letter please: ').upper()
+            ### Error will be raised if input is incorrect
+            letterGuessed = input('\nGuess a letter please: ')
 
             if not letterGuessed.isalpha() or len(letterGuessed) != 1:
-                raise ValueError('Invalid input. You must enter a single letter.')     
+                raise ValueError('Invalid input. You must enter a single letter.')
 
 
             ### User is right
