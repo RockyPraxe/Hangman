@@ -24,8 +24,11 @@ wordDictionary = [
 
 
 ### Choose a random word with choice method
+
 randomWord = random.choice(wordDictionary)
+
 ### Now we can print undescore lines and user can start guessing
+
 for x in randomWord:
     print('_', end=' ')
 
@@ -109,58 +112,61 @@ def printLines():
 
 ### Creating the loop which will operating the game
 
-length_of_word_to_guess = len(randomWord)
-wrong_answers = 0
-current_guess_index = 0
-current_letters_guessed = []
-current_letters_right = 0
+def hangman_game():
+    ### Creating the loop which will operating the game
+
+    length_of_word_to_guess = len(randomWord)
+    wrong_answers = 0
+    current_guess_index = 0
+    current_letters_guessed = []
+    current_letters_right = 0
 
 
 
 
-while(wrong_answers != 6 and current_letters_right != length_of_word_to_guess):
-    """
-      Main loop for the Hangman game.
+    while(wrong_answers != 6 and current_letters_right != length_of_word_to_guess):
+        """
+        Main loop for the Hangman game.
 
-    This loop continues until the player has either guessed the word correctly or made 6 wrong guesses.
-    It prompts the user to guess a letter, checks if the letter is correct or wrong, updates the game state accordingly,
-    and prints the current hangman picture, the guessed letters, the word with guessed letters filled in,
-    and lines representing unknown letters.
-    """
-    print('\nLetters guessed are: ')
-    for letter in current_letters_guessed:
-        print(letter, end=' ')
+        This loop continues until the player has either guessed the word correctly or made 6 wrong guesses.
+        It prompts the user to guess a letter, checks if the letter is correct or wrong, updates the game state accordingly,
+        and prints the current hangman picture, the guessed letters, the word with guessed letters filled in,
+        and lines representing unknown letters.
+        """
+        print('\nLetters guessed are: ')
+        for letter in current_letters_guessed:
+            print(letter, end=' ')
 
-    ### Promt user input
+        ### Promt user input
 
-    letterGuessed = input('\nGuess a letter please: ')
+        letterGuessed = input('\nGuess a letter please: ')
 
-    ### User is right
+        ### User is right
 
-    if(randomWord[current_guess_index] == letterGuessed):
-        print_hangman(wrong_answers)
-        ### Print word
-        current_guess_index +=1
-        current_letters_guessed.append(letterGuessed)
-        current_letters_right = printWord(current_letters_guessed)
-        printLines()
+        if(randomWord[current_guess_index] == letterGuessed):
+            print_hangman(wrong_answers)
+            ### Print word
+            current_guess_index +=1
+            current_letters_guessed.append(letterGuessed)
+            current_letters_right = printWord(current_letters_guessed)
+            printLines()
 
-    ### User was wrong
+        ### User was wrong
 
-    else:
-        wrong_answers +=1
-        current_letters_guessed.append(letterGuessed)
+        else:
+            wrong_answers +=1
+            current_letters_guessed.append(letterGuessed)
 
-        ### Update the picture
+            ### Update the picture
 
-        print_hangman(wrong_answers)
+            print_hangman(wrong_answers)
 
-        ### Print word
+            ### Print word
 
-        current_letters_right = printWord(current_letters_guessed)
-        printLines()
+            current_letters_right = printWord(current_letters_guessed)
+            printLines()
 
-print(f'Game is over {name}! Thank you for playing')        
+    print('\nGame is over! \nThank you for playing.')   
+          
 
-
-
+hangman_game()
