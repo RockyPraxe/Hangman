@@ -95,3 +95,12 @@ def printWord(guessedLetters):
         counter +=1
     return rightLetters        
 
+
+def printLines():
+    """
+    This function prints lines using the Unicode character '\u203E' to represent the length of the word to guess.
+    Each line represents an unknown letter in the word.
+    """
+    print('\r')
+    for char in randomWord:
+        print('\u203E', end=' ')
