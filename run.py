@@ -177,3 +177,32 @@ def hangman_game():
           
 
 hangman_game()
+
+
+def restart_game():
+    """
+    Restart the game by calling the hangman_game() function.
+    """
+    while True:
+        hangman_game()
+        if not play_again():
+            break
+
+
+def play_again():
+    """
+    Ask the user if they want to play again.
+    Returns True if the user wants to play again, False otherwise.
+    """
+    while True:
+        play = input('Do you want to play again? (y/n): ')
+        if play.lower() == 'y':
+            return True
+        elif play.lower() == 'n':
+            return False
+        else:
+            print('Invalid input. Please enter \'y\' or \'n\'.')
+
+
+play_again()
+restart_game()                                     
