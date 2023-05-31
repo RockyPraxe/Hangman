@@ -186,7 +186,7 @@ def restart_game():
     """
     Restart the game by calling the hangman_game() function.
     """
-    while True:
+    while playAgain:
         hangman_game()
         if not play_again():
             break
@@ -207,5 +207,5 @@ def play_again():
             print('Invalid input. Please enter \'y\' or \'n\'.')
 
 
-play_again()
+playAgain = play_again()
 restart_game()
