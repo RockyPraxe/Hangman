@@ -8,7 +8,8 @@ def welcome_message():
     print('Welcome to hangman')
     name = input('Enter your name: \n').upper()
     print(f'Hello, {name}! Lets play Hangman!')
-    print('---------------------------------')
+    print(f'{name} be sure to use lowercase letters!')
+    print('-------------------------------')
 
 
 welcome_message()
@@ -133,7 +134,8 @@ def hangman_game():
     current_letters_guessed = []
     current_letters_right = 0
 
-    while (wrong_answers != 6 and current_letters_right != length_of_word_to_guess):
+    while (wrong_answers != 6 and current_letters_right
+            != length_of_word_to_guess):
         print('\nLetters guessed are: ')
         for letter in current_letters_guessed:
             print(letter, end=' ')
@@ -144,8 +146,8 @@ def hangman_game():
             # Error will be raised if input is incorrect
             letterGuessed = input('\nGuess a letter please: ')
 
-            if not letterGuessed.isalpha() or len(letterGuessed) != 1 or letterGuessed != letterGuessed.lower():
-                raise ValueError('Invalid input. You must enter a single lower letter.')
+            if not letterGuessed.isalpha() or len(letterGuessed) != 1:
+                raise ValueError('Error, you must enter a single letter.')
 
             # User is right
 
