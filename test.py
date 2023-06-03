@@ -201,6 +201,9 @@ def play_again():
         play = input('Do you want to play again? (y/n): ')
         if play.lower() == 'y':
             playAgain == True
+            global randomWord
+            randomWord = random.choice(wordDictionary)
+            print(randomWord)
             hangman_game()
         elif play.lower() == 'n':
             playAgain == False
