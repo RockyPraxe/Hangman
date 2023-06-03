@@ -130,7 +130,6 @@ def hangman_game():
     """
     length_of_word_to_guess = len(randomWord)
     wrong_answers = 0
-    current_guess_index = 0
     current_letters_guessed = []
     current_letters_right = 0
 
@@ -151,10 +150,9 @@ def hangman_game():
 
             # User is right
 
-            if (randomWord[current_guess_index] == letterGuessed):
+            if letterGuessed in randomWord:
                 print_hangman(wrong_answers)
                 # Print word
-                current_guess_index += 1
                 current_letters_guessed.append(letterGuessed)
                 current_letters_right = printWord(current_letters_guessed)
                 printLines()
@@ -185,12 +183,6 @@ hangman_game()
 
 playAgain = ""
 
-#def restart_game():
-
-    #while playAgain:
-        #hangman_game()
-        #if not play_again():
-            #break
 
 def play_again():
     """
@@ -203,7 +195,6 @@ def play_again():
             playAgain == True
             global randomWord
             randomWord = random.choice(wordDictionary)
-            print(randomWord)
             hangman_game()
         elif play.lower() == 'n':
             playAgain == False
@@ -215,4 +206,4 @@ def play_again():
 
 
 play_again()
-#restart_game()
+
