@@ -37,3 +37,101 @@ If the suggested letter is in the word, the word thinker fills in the correspond
 - Multiplayer mode: Enable players to compete against each other by taking turns guessing the word or implement an online multiplayer mode.
 - User profiles: Allow players to create profiles, save their progress, and track their game statistics.
 - Graphics and animations: Enhance the visual experience with appealing graphics, animations, and sound effects.
+
+## Data Model
+
+### 1. Game:
+
+- Attributes:
+    - randomWord: The randomly selected word for the current game.
+    - wrongAnswers: The number of wrong answers/guesses made by the player.
+    - currentLettersGuessed: A list of letters that the player has guessed.
+    - currentLettersRight: The number of correctly guessed letters in the word.
+    - lengthOfWordToGuess: The length of the word to guess.
+
+- Methods:
+
+    - printHangman(wrong): Prints the hangman figure based on the number of wrong answers.
+    - printWord(guessedLetters): Prints the word to guess with guessed letters filled in and returns the number of correctly guessed letters.
+    - printLines(): Prints lines representing unknown letters in the word.
+    - hangmanGame(): The main loop for the Hangman game, handles the gameplay logic.
+
+### 2. WordDictionary:
+
+- Attributes:
+    - wordList: A list of words that can be selected for the game.
+### 3. Player:
+
+- Attributes:
+    - name: The name of the player.
+
+### Relationships:
+- The Game object has a relationship with the WordDictionary object to access the list of words for word selection.
+- The Game object may have a relationship with the Player object if you choose to track player information or implement features like user profiles or high scores.
+
+## Testing
+I have manually tested this project by doing the following:
+- Passed the code trough a PEP8 linter and confirmed are no problems
+- Given invalid inputs: multiple letters when single letter is expected
+- Tested in my local terminal and the Heroku terminal
+- My family and friends tested the game, this is how we found a bug in the     
+  code and then fixed it
+
+- Game over
+![Game Over](images/game_over.png)
+
+- Game over - wrong input 
+![Game Over - wrong input](images/game_over_wrong_input.png)
+
+- Not play again
+![Not Play Again](images/not_play_again.png)
+
+- Play again
+![Play Again](images/play_again.png)
+
+- Right guess
+![Right Guess](images/right_guess.png)
+
+- Welcome message
+![Welcome Message](images/welcome_message.png)
+
+- Wrong guess
+![Wrong guess](images/wrong_guess.png)
+
+- Wrong input
+![Wrong Input](images/wrong_input.png)
+
+- Wrong input 1
+![Wrong input 1](images/wrong_input_1.png)
+
+
+## Validator Testing
+- PEP8
+
+![PEP8](images/pep8.png)
+
+
+## Bugs
+
+- PEP8 validator : line 70, 76, 82, 83 = W605 invalid escape sequence '\ '
+- This is Hangman drawing, is not causing any in game erorr 
+
+## Deployment
+
+This project was deployed using Code Institute's mock terminal for Heroku
+- Stepd for deployment:
+    - Fork or clone this repository
+    - Create a new Heroku app
+    - Set the buildbacks to Python and NodeJS in that order
+    - Link the Heroku app to the repository
+    - Click on Deploy
+
+
+## Credits 
+
+- Code Onstitute for the deployment terminal and tutorials , templates...
+- [Wikipedia](https://en.wikipedia.org/wiki/Hangman_(game)) for the details of the game
+- [W3schools.com](https://www.w3schools.com/css/default.asp) 
+- [Youtube link to freecodecamp](https://www.youtube.com/@freecodecamp)
+- I used [Am I Responsive](https://ui.dev/amiresponsive) for the responsive design picture for README.md
+
